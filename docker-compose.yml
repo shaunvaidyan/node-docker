@@ -1,0 +1,22 @@
+version: "3"
+services:
+  node-app:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=shaun
+      - MONGO_INITDB_ROOT_PASSWORD=mypass
+    volumes:
+      - db-data:/data/db
+  redis:
+    image: redis
+volumes:
+  db-data:
