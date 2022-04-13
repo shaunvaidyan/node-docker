@@ -3,6 +3,7 @@ const app = express()
 const port = process.env.PORT || 3000;
 const mongoose = require("mongoose");
 const session = require("express-session")
+const cors = require("cors")
 const { createClient } = require('redis');
 let RedisStore = require("connect-redis")(session)
 
@@ -42,6 +43,7 @@ const connectWithRetry = () => {
 connectWithRetry();
 
 app.enable("trust proxy")
+app.use(cors({}))
 app.use(
     session({
       store: new RedisStore({ client: redisClient }),
