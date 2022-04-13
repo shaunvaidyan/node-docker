@@ -41,7 +41,7 @@ const connectWithRetry = () => {
 
 connectWithRetry();
 
-
+app.enable("trust proxy")
 app.use(
     session({
       store: new RedisStore({ client: redisClient }),
@@ -60,8 +60,9 @@ app.use(express.json()); // add this middleware so express can attach and parse 
 
 app.listen(port, ()=> console.log(`listening on port ${port}`))
 
-app.get("/", (req,res) => {
+app.get("/api/v1", (req,res) => {
     res.send("<h2>Hi There DO!!</h2>");
+    console.log("Yeah it loadbalanced")
 });
 
 //localhost:3000/api/v1/posts
