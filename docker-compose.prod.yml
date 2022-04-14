@@ -9,5 +9,12 @@ services:
       args: 
         NODE_ENV: production
     environment:
-      - NODE_ENV=production
+    - NODE_ENV=production
+    - MONGO_USER=${NODE_DOCKER_MONGO_USER}
+    - MONGO_PASSWORD=${NODE_DOCKER_MONGO_PASSWORD}
+    - SESSION_SECRET=${NODE_DOCKER_SESSION_SECRET}
     command: npm start
+    mongodb:
+      environment:
+      - MONGO_INITDB_ROOT_USERNAME=${NODE_DOCKER_MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${NODE_DOCKER_MONGO_INITDB_ROOT_PASSWORD}
